@@ -1,14 +1,56 @@
 <div align="center">
-  <div style="width:60%" class="panel panel-info">
-    <div class="panel-heading" align="left">Production</div>
-    <div class="panel-body" align="left">Add content here</div>
+  <div>
+    <button class="btn btn-success" (click)="showAddServerForm()">Add Server <i class="glyphicon glyphicon-plus-sign"></i></button>
   </div>
-  <div style="width:60%" class="panel panel-info">
-      <div class="panel-heading" align="left">Test</div>
-      <div class="panel-body" align="left">Add content here</div>
+  <div class="container">
+    <div class="col-md-12">
+      <h3>Server List</h3>
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Description</th>
+            <th class="text-center">Environment</th>
+            <th class="text-center">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let server of servers">
+            <td>{{ server.id }}</td>
+            <td>{{ server.name }}</td>
+            <td>{{ server.description }}</td>
+            <td>{{ server.env }}</td>
+            <td>
+              <button class="btn btn-info" (click)="showEditServerForm(server)"><i class="glyphicon glyphicon-edit"></i></button>
+              <button class="btn btn-danger" (click)="removeServer(server)"><i class="glyphicon glyphicon-minus-sign"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div style="width:60%" class="panel panel-info">
-      <div class="panel-heading" align="left">Development</div>
-      <div class="panel-body" align="left">Add content here</div>
-  </div>
+
+  <form *ngIf="serverForm">
+    <h4>Add New Server</h4>
+    <p>ID: <input type="text" name="id" [(ngModel)]="newServer.id" /></p>
+    <p>Name: <input type="text" name="name" [(ngModel)]="newServer.name" /></p>
+    <p>Description: <input type="text" name="description" [(ngModel)]="newServer.description" /></p>
+    <p>Environment: <input type="text" name="environment" [(ngModel)]="newServer.env" /></p>
+    <p><button type="button" class="btn btn-primary" (click)="saveServer(newServer)">Submit</button>
+       <button type="button" class="btn btn-warning" (click)="cancelNewServer()">Cancel</button>
+    </p>
+   </form>
+
+   <form *ngIf="editServerForm">
+    <h4>Edit Server Details</h4>
+    <p>ID: <input type="text" name="id" [(ngModel)]="editedServer.id" /></p>
+    <p>Name: <input type="text" name="name" [(ngModel)]="editedServer.name" /></p>
+    <p>Description: <input type="text" name="description" [(ngModel)]="editedServer.description" /></p>
+    <p>Environment: <input type="text" name="environment" [(ngModel)]="editedServer.env" /></p>
+    <p><button type="button" class="btn btn-primary" (click)="updateServer(editedServer)">Submit</button>
+       <button type="button" class="btn btn-warning" (click)="cancelEdits()">Cancel</button>
+    </p>
+   </form>
 </div>
+
