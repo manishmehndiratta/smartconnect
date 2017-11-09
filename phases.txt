@@ -1,0 +1,12 @@
+1. Nav bar with links
+2. Set up routes and hyperlinks to each module/component
+3. set up services
+3. Work on one module (server)
+  3a. html and ui piece to set-up the interface. To crud servers.
+  3b. connect and configure these crud to persist in db
+4. work on admin part - users, roles, manage
+5. login/logout screen
+6. nav bar and pages display acording to the role
+
+7. gather data from servers in the backend and populate the db
+8. display the data on the UI
