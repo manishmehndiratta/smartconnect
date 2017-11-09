@@ -15,7 +15,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { AdminuserComponent } from './adminuser/adminuser.component';
 import { AdminroleComponent } from './adminrole/adminrole.component';
 import { AdminmanageComponent } from './adminmanage/adminmanage.component';
-
+import { ServerService } from './services/server.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { AdminmanageComponent } from './adminmanage/adminmanage.component';
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [ServerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

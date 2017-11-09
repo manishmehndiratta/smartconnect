@@ -10,7 +10,7 @@ import { ServerService } from '../services/server.service';
   encapsulation: ViewEncapsulation.None
 })
 export class ServerComponent implements OnInit {
-  servers: Array<Server>=[];
+  public servers: Array<Server>=[];
   //servers: Server[];
   serverForm: boolean=false;
   editServerForm: boolean=false;
@@ -21,14 +21,14 @@ export class ServerComponent implements OnInit {
   envTest: string='Test';
   envDev: string='Development';
 
-  constructor() { }
+  constructor(private serverService:ServerService) { }
 
   ngOnInit() {
     this.getServers();
   }
 
   getServers(){
-
+    this.servers=this.serverService.getServer();
   }
 
   showAddServerForm() {
@@ -42,9 +42,23 @@ export class ServerComponent implements OnInit {
 
   saveServer(server: Server) {
     if(this.isNewForm) {
-      // add a new product
-      //this._productService.addProduct(product);
+      // add a new server
+      this.serverService.addServer(server);
     }
     this.serverForm = false;
+  }
+
+  showEditServerForm(server:Server){
+    if (!server){
+      this.serverForm=true;
+      return;
+    }
+    this.editServerForm=true;
+    //this.editedServer=
+    //this.serverService.updateServer(server);
+  }
+
+  removeServer(server:Server){
+    this.serverService.deleteServer(server);
   }
 }
